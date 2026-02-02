@@ -717,7 +717,7 @@
                         <div class="alert alert-danger">
                             <i class="fas fa-exclamation-triangle me-2"></i>
                             <strong>Lỗi luận giải:</strong><br>
-                            ${errorMsg}
+                           Có lỗi xảy ra bạn vui lòng thử lại sau nhé!
                         </div>
                         <div class="text-center">
                             <button onclick="autoRunLuanGiai()" class="btn btn-outline-primary">
