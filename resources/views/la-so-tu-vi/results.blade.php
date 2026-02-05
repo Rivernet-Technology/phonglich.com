@@ -3,6 +3,7 @@
     @push('styles')
         <link rel="stylesheet" href="{{ asset('/css/vanilla-daterangepicker.css?v=11.6') }}">
         <link rel="stylesheet" href="{{ asset('/css/la-so.css?v=11.6') }}">
+        <link rel="stylesheet" href="{{ asset('css/cung.css?v=11.7') }}">
         <style>
             .main-content-wrapper {
                 background-image: url(../images/Quy_Trinh_Bg.png);
@@ -228,7 +229,9 @@
                         @include('la-so-tu-vi.thay')
                         <div id="luanGiaiResults"></div>
 
-
+                        <div id="cardSection" style="display: none;">
+                            @include('la-so-tu-vi.cung')
+                        </div>
                         <!-- App Download Banner -->
                         @include('la-so-tu-vi.app')
                     </div>
@@ -790,6 +793,12 @@
                 setTimeout(() => {
                     checkIfNeedExpandButton();
                 }, 100);
+
+                // Hiển thị phần danh sách 12 cung sau khi luận giải xuất hiện
+                const cardSection = document.getElementById('cardSection');
+                if (cardSection) {
+                    cardSection.style.display = 'block';
+                }
             }
 
             // Function để kiểm tra và hiển thị nút xem thêm
