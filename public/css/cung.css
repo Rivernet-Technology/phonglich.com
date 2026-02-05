@@ -47,6 +47,11 @@
     font-size: 24px;
 }
 
+.van-title{
+    font-size: 24px;
+    font-weight: 600;
+}
+
 .cung-description {
     font-size: 18px;
     font-weight: 400;
@@ -155,6 +160,16 @@
     display: block;
 }
 
+.van-section{
+    border: 1px solid #2149874D;
+    border-radius: 18px;
+    padding: 20px;
+}
+
+.van-content{
+    font-size: 20px;
+}
+
 body.modal-open {
       position: static !important; 
       height: auto !important;
@@ -227,6 +242,10 @@ body.modal-open {
         font-size: 22px;
     }
 
+    .van-title{
+        font-size: 22px;
+    }
+
     .cung-description{
         min-height: 55px;
     }
@@ -256,6 +275,10 @@ body.modal-open {
         min-height: 50px;
     }
 
+    .van-title{
+        font-size: 20px;
+    }
+
     .cung-description {
         min-height: 75px;
     }
@@ -263,7 +286,8 @@ body.modal-open {
     .cung-description,
     .card-btn,
     .star-row,
-    .cards-btn{
+    .cards-btn,
+    .van-content{
         font-size: 16px;
     }
 
@@ -352,6 +376,23 @@ body.modal-open {
         margin: 10px 0;
     }
 
+    .van-section{
+        padding: 12px;
+    }
+
+    .van-title{
+        font-size: 18px;
+    }
+
+    .van-left{
+        gap: 4px !important;
+    }
+
+    .van-left img{
+        width: 24px !important;
+        height: 24px !important;
+    }
+
     .modal-dialog {
         max-width: 90% !important; 
         margin: auto !important;
@@ -415,14 +456,15 @@ body.modal-open {
         gap: 6px;
     }
 
-    .cung-name {
+    .cung-name, .van-title {
         font-size: 15px;
     }
     
     .cung-description,
     .card-btn,
     .star-row,
-    .cards-btn{
+    .cards-btn,
+    .van-content{
         font-size: 13px;
     }
 
@@ -469,7 +511,7 @@ body.modal-open {
     .card-footer{
         margin: 0 10px;
     }
-    
+
     .modal-dialog {
         max-width: 220px !important;
     }

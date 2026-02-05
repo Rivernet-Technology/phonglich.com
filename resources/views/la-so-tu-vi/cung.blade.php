@@ -177,15 +177,21 @@
         // Duyệt qua các cung và cập nhật dữ liệu
         foreach ($palacesData as $palaceName => $palaceData) {
             $cungChucNang = trim(preg_replace('/\s*\([^)]*\)\s*/', '', $palaceData['cung_chuc_nang'] ?? ''));
-            
+
             if (isset($cungMapping[$cungChucNang])) {
                 $key = $cungMapping[$cungChucNang];
-                
+
+                // Lấy trực tiếp 3 loại sao từ API
+                // API đã phân phối Hóa và các sao đặc biệt vào đúng vị trí rồi
+                $chinhTinh = $palaceData['chinh_tinh'] ?? [];
+                $phuTinhCat = $palaceData['phu_tinh_cat'] ?? [];
+                $phuTinhSat = $palaceData['phu_tinh_sat'] ?? [];
+
                 $cungList[$key]['data'] = [
                     'can_chi_cung' => str_replace('.', ' ', $palaceData['can_chi_cung'] ?? 'N/A'),
-                    'chinh_tinh' => $extractStarNames($palaceData['chinh_tinh'] ?? []),
-                    'phu_tinh_cat' => $extractStarNames($palaceData['phu_tinh_cat'] ?? []),
-                    'phu_tinh_sat' => $extractStarNames($palaceData['phu_tinh_sat'] ?? [])
+                    'chinh_tinh' => $extractStarNames($chinhTinh),
+                    'phu_tinh_cat' => $extractStarNames($phuTinhCat),
+                    'phu_tinh_sat' => $extractStarNames($phuTinhSat)
                 ];
             }
         }
@@ -225,7 +231,7 @@
 
 <!-- 12 Cung Section -->
 <div class="card-section my-4">
-    <h3 class="card-section-title fw-bold box-title text-center">Danh sách 12 Cung</h3>
+    <h3 class="card-section-title fw-bold box-title text-center">Danh Sách 12 Cung</h3>
     <div class="card-grid mt-3">
         @foreach($cungList as $cungKey => $cung)
             <div class="main-card d-flex flex-column">
@@ -266,6 +272,49 @@
     <div class="cards-actions d-flex justify-content-center" id="cungCardsActions">
         <button class="cards-btn cards-btn-expand" onclick="expandCungCards()">Xem thêm</button>
         <button class="cards-btn cards-btn-collapse" onclick="collapseCungCards()" style="display: none;">Rút gọn</button>
+    </div>
+</div>
+
+@php
+    $vanSections = [
+        [
+            'title' => 'Đại vận',
+            'content' => 'Đại Vận phản ánh các giai đoạn lớn trong cuộc đời, thường kéo dài nhiều năm, cho biết xu hướng phát triển tổng thể của từng thời kỳ. Đại Vận giúp nhìn bức tranh dài hạn, tránh đánh giá cuộc đời chỉ qua một thời điểm ngắn.'
+        ],
+        [
+            'title' => 'Tiểu vận',
+            'content' => 'Tiểu Vận phản ánh vận trình theo từng năm, cho thấy những biến động và sự kiện nổi bật trong ngắn hạn. Tiểu Vận chỉ thực sự có ý nghĩa khi được xem trong mối liên hệ với Đại Vận.'
+        ],
+        [
+            'title' => 'Lời khuyên',
+            'content' => 'Lời khuyên khi xem lá số Tử Vi là nên tiếp cận với tâm thế tỉnh táo và thực tế. Lá số giúp hiểu xu hướng và bản chất vấn đề, nhưng quyết định cuối cùng vẫn phụ thuộc vào hành động và lựa chọn của mỗi người.'
+        ]
+    ];
+@endphp
+
+<div class="van-section my-4">
+    <h3 class="card-section-title fw-bold text-center">Tiểu Vận, Đại Vận & Lời Khuyên</h3>
+    
+    <div class="van-cards-container d-flex flex-column">
+        @foreach($vanSections as $section)
+            <div class="van-cards d-flex flex-column gap-3">
+                <div class="van-header d-flex align-items-center justify-content-between">
+                    <div class="van-left d-flex align-items-center gap-2">
+                        <img src="{{ asset('/images/logo_phonglichqr.svg') }}" alt="Logo" style="width: 27px; height: 27px">
+                        <h4 class="van-title mb-0 text-capitalize fw-bold">{{ $section['title'] }}</h4>
+                    </div>
+                    <div class="van-right">
+                        <a href="javascript:void(0)" class="card-btn text-center text-decoration-none" data-bs-toggle="modal" data-bs-target="#appOnlyModal">
+                            Xem chi tiết
+                            <img src="{{ asset('images/cung/icon-xem-them.svg') }}" alt="Xem thêm" style="width: 12px; height: 12px; margin-left: 6px; margin-bottom: 3px">
+                        </a>
+                    </div>
+                </div>
+                <div class="van-bottom">
+                    <h5 class="van-content">{{ $section['content'] }}</h5>
+                </div>
+            </div>
+        @endforeach
     </div>
 </div>
 
